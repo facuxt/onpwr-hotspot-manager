@@ -1,9 +1,14 @@
-app.controller("ListUsersController",["$mdToast", "$http", function($mdToast, $http){
+app.controller("ListUsersController",["$mdToast", "$http", '$scope', function($mdToast, $http, $scope){
 
 	var m = this;
-
+	var token = {}
+	token['x-access-token'] = $scope.token;
 	m.inicial = function(){
-		$http.get("/api/users").success(function(data){
+		$http({
+			url: "/api/users",
+			method: "get",
+			headers: token
+		}).success(function(data){
 			m.users = data;
 		})
 	}
@@ -12,7 +17,11 @@ app.controller("ListUsersController",["$mdToast", "$http", function($mdToast, $h
 		if(user.disabled=="true"){
 			action='enable';
 		}
-		$http.get('/api/user/'+action+'/'+user['.id']).success(function(data){
+		$http({
+			url: '/api/user/'+action+'/'+user['.id'],
+			method: "get",
+			headers: token
+		}).success(function(data){
 			if(data.success){
 				m.inicial();
 				$mdToast.show(

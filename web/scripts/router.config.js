@@ -8,8 +8,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('inicio', {
       url: "/",
       templateUrl: "vistas/inicio.html",
-      //controller: "inicioController",
-      //controllerAs: "modelo"
+      controller: "IndexController",
+      controllerAs: "modelo"
     })
     .state('listUsers', {
       url: "/listUsers",

@@ -1,0 +1,21 @@
+<md-dialog>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Iniciar sesion</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+		<div class="loginmodal-container">
+			<input type="text" name="user" placeholder="Username" ng-model="name">
+			<input type="password" name="pass" placeholder="Password"ng-model="password">
+			<input type="submit" name="login" class="login loginmodal-submit" value="Login" ng-click="login()">
+		</div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
+
+
+

@@ -1,3 +1,4 @@
 -Instalar dependencias con npm install.
--Configurar router en server.js linea 15.
--iniciar con npm start
+-Configurar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
+-instalar nodemon npm install -g nodemon
+-iniciar con nodemon server.js
