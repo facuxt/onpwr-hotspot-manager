@@ -1,0 +1,3 @@
+-Instalar dependencias con npm install.
+-Configurar router en server.js linea 15.
+-iniciar con npm start

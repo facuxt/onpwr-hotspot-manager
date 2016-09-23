@@ -8,6 +8,18 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 
+var MikroNode = require('mikronode');
+
+//Crear conexión reutilizable para mikrotik.
+var createConnection = function(){
+	var connection = MikroNode.getConnection('192.168.88.1', 'admin', '', { //configurar estos parámetros: "ip router, user, password"
+	  closeOnDone : true
+	});
+	connection.on('error', function(err) {
+	    console.error('Error: ', err);
+	});
+	return connection;
+}
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +42,40 @@ router.use(function(req, res, next) {
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
+});
+
+router.get('/users', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/hotspot/user/print');
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			var users = values[0];
+			res.json(users);   
+		}, function rejected(reason) {
+			console.log('Oops: ' + reason);
+		});
+	});
+});
+
+router.get('/user/enable/:userId', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/hotspot/user/set', ['=.id='+req.params.userId, '=disabled=no'])
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			res.json({success:true});  
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+
+router.get('/user/disable/:userId', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/hotspot/user/set', ['=.id='+req.params.userId, '=disabled=yes'])
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			res.json({success:true});   
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
 });
 
 // more routes for our API will happen here
