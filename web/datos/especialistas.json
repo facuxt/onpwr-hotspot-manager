@@ -1,0 +1,11 @@
+[{
+	"nombre": "Javier Q",
+	"especialidad": "traumatologo", 
+	"pacientesEnEspera": [],
+	"id": "1"
+},{
+	"nombre": "Manuel Montt",
+	"especialidad": "cardiologo", 
+	"pacientesEnEspera": [],
+	"id": "2"
+}]

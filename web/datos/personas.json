@@ -1,0 +1,28 @@
+[{
+		"nombre": "Facundo Caselles",
+		"dni": "191919",
+		"estadoCivil": "on hold",
+		"fechaNacimiento": "",
+		"paisResidencia": "Argentina",
+		"nacionalidad": "Argentina",
+		"sexo": "M",
+		"id": "12344"
+	},{
+		"nombre": "Pedro Dolores",
+		"dni": "12513415",
+		"estadoCivil": "on hold",
+		"fechaNacimiento": "",
+		"paisResidencia": "Argentina",
+		"nacionalidad": "Argentina",
+		"sexo": "M",
+		"id": "12345"
+	},{
+		"nombre": "Mariano Mazmorra",
+		"dni": "135464562",
+		"estadoCivil": "on hold",
+		"fechaNacimiento": "",
+		"paisResidencia": "Argentina",
+		"nacionalidad": "Argentina",
+		"sexo": "M",
+		"id": "12346"
+	}]

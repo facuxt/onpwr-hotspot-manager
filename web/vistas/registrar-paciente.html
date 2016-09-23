@@ -1,0 +1,98 @@
+<div class="col-xs-12">
+
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Registro de nueva persona.</h3>
+	  </div>
+	  <div class="panel-body">
+<!--<pre>{{principal | json}}</pre>-->
+	  
+	  <form name ="principal">
+	  
+				  <center><p>Dar de alta una persona nueva en el sistema.</p></center>
+				  <div class="col-xs-6 form-group">
+					  <label>Nombre</label>
+					  <input type="text" class="form-control" ng-model="modelo.persona.nombre" name="nombre" required placeholder="Ingrese su Nombre">
+
+					  <div ng-messages="principal.nombre.$error">				  	
+					  		<div ng-message="required">Campo Requerido.</div>  		
+					  </div>
+				  </div>
+
+				  <div class="col-xs-6 form-group">
+					  <label>Dni</label>
+					  <input class="form-control" ng-model="modelo.persona.dni" placeholder="ingrese dni" type="number" ng-minlength="8" ng-maxlength="8" name="dni" required>
+
+					  <div ng-messages="principal.dni.$error">
+					  		<div ng-message="required">Este campo es requerido</div>
+					  		<div ng-message="minlength">Demasiado Corto</div>
+					  		<div ng-message="maxlength">Demasiado Largo</div>  		
+					  </div>				  
+				  </div>
+
+				  <div class="col-xs-12 form-group">
+					  <label>Estado civil</label>
+					  <select type="text" class="form-control" ng-model="modelo.persona.estadoCivil" name="Est_civ" required> 					  
+					  	<option value="Soltero">Soltero</option>
+					  	<option value="Casado">Casado/Raptado</option>
+					  </select>
+					  <div ng-messages="principal.Est_civ.$error">				  	
+					  		<div ng-message="required">Debe seleccionar una opcion.</div>  		
+					  </div>
+				  </div>
+
+
+				  <div class="col-xs-12 form-group">
+					  <label>Fecha Nacimiento</label>
+					  <input type="date" class="form-control" ng-model="modelo.persona.fechaNacimiento" name="fech_nac" required>					  
+				  </div>
+
+
+				  <div class="col-xs-12 form-group">
+					  <label>Pais residencia</label>
+						  <select type="text" class="form-control" ng-model="modelo.persona.paisResidencia" ng-options="pais for pais in modelo.paises" name="pais_res" required> 
+					  </select>
+					  <div ng-messages="principal.pais_res.$error">
+					  	<div ng-message="required">Debe seleccionar una opcion</div>
+					  </div>
+				  </div>
+
+
+				  <div class="col-xs-12 form-group">
+					  <label>Nacionalidad</label>
+					  <select type="text" class="form-control" ng-model="modelo.persona.nacionalidad" name="nac_pais" required> 
+					  	<option value="Argentina">Argentina</option>
+					  	<option value="Otro">Otro</option>
+					  </select>
+					  <div ng-messages="principal.nac_pais.$error">
+					  	<div ng-message="required">Debe seleccionar una opcion</div>
+					  </div>
+				  </div>
+
+
+				  <div class="col-xs-12 form-group">
+					  <label>Sexo</label>
+					  <select type="text" class="form-control" ng-model="modelo.persona.sexo" name="sexo_per" required> 
+					  	<option value="Masculino">Masculino</option>
+					  	<option value="Femenino">Femenino</option>
+					  </select>
+					  <div ng-messages="principal.sexo_per.$error">
+					  	<div ng-message="required">Debe seleccionar una opcion</div>
+					  </div>
+				  </div>
+				  
+				  <div class='clearfix'> </div>
+
+				  <p><a class="btn btn-primary btn-lg" 
+				  ng-class="{'disabled':principal.$invalid}" 
+				  ng-click="modelo.registrarPersona(principal.$valid)" 
+				  role="button">{{modelo.persona.editando?"Guardar":"Registrar"}}
+				  </a></p>
+
+		 </form>
+	  </div>
+	</div>
+
+
+</div>
