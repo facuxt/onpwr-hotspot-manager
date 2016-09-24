@@ -1,0 +1,71 @@
+<md-dialog>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Dispositivos conectados con usuario <b>{{name}}</b></h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+  		<table class="table"> 
+          <thead> 
+            <tr> 
+              <th>
+                #id
+              </th>
+              <th>
+                IP
+              </th> 
+              <th>
+                Tiempo conectado
+              </th>
+              <th>
+                Descargado
+              </th>
+              <th>
+                Subido
+              </th>
+              <th>
+                Acciones
+              </th> 
+            </tr> 
+          </thead> 
+          <tbody> 
+            <tr ng-repeat="session in active"> 
+              <th scope="row">
+                <!-- .id, address, uptime, descargado, subido,  -->
+                {{session['.id']}}
+              </th> 
+              <td>
+                {{session.address}}
+              </td> 
+              <td>
+                {{session.uptime}}
+              </td> 
+              <td>
+                {{floor(session['bytes-in']/1024/1024)}}MB
+              </td> 
+              <td>
+                {{floor(session['bytes-out']/1024/1024)}}MB
+              </td> 
+              <td>
+                <button class="btn btn-danger btn-sm" ng-click="disconnect(session['.id'])">
+                  <i class="glyphicon glyphicon-off"></i>
+                  <md-tooltip>Desconectar dispositivo</md-tooltip>
+                </button>
+              </td> 
+            </tr>  
+          </tbody> 
+        </table> 
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="hide()" md-autofocus>
+        Aceptar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+
+

@@ -11,7 +11,7 @@ app.controller("IndexController",["$mdDialog", "$http", function($mdDialog, $htt
   
   });
 
-  function DialogController($scope, $mdDialog, $http, $rootScope, $mdToast, $state) {
+  function DialogController($scope, $mdDialog, $http, $cookies, $mdToast, $state) {
     $scope.login = function(){
         $http({
           url: '/session/login',
@@ -22,7 +22,7 @@ app.controller("IndexController",["$mdDialog", "$http", function($mdDialog, $htt
           method: "post"
         }).success(function(data){
             if(data.success){
-              $rootScope.token = data.token;
+              $cookies.put("token", data.token);
               $mdDialog.hide();
               $state.go("listUsers")
             }else{

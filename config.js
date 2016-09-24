@@ -3,6 +3,5 @@ module.exports = {
 	'router_user' : "admin",
 	'router_password': "",
     'adminUsr' : 'SIADMIN',
-    'secret': 'lovescotch',
-    //'database': 'mongodb://noder:noderauth&54;proximus.modulusmongo.net:27017/so9pojyN'
+    'secret': 'changeme',
 };

@@ -115,6 +115,41 @@ apiRoutes.get('/users', function(req, res) {
 	});
 });
 
+apiRoutes.get('/active', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/hotspot/active/print');
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			var users = values[0];
+			res.json(users);			
+		}, function rejected(reason) {
+			console.log('Oops: ' + reason);
+		});
+	});
+});
+
+apiRoutes.post('/removeActive/:activeId', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/hotspot/active/remove', ['=.id='+req.params.activeId])
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			res.json({success:true});  
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+
+apiRoutes.post('/userPassword/:userId', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/hotspot/user/set', ['=.id='+req.params.userId, '=password='+req.body.newpass])
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			res.json({success:true});  
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+
+
 apiRoutes.get('/user/enable/:userId', function(req, res) {
 	var connPromise = createConnection().getConnectPromise().then(function(conn) {
 		var chan1Promise = conn.getCommandPromise('/ip/hotspot/user/set', ['=.id='+req.params.userId, '=disabled=no'])

@@ -1,0 +1,33 @@
+<md-dialog>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editando usuario<b>{{user.name}}</b></h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+  		<md-list flex>
+        <md-list-item>
+          <div class="md-list-item-text" layout="column">
+              <md-input-container>
+                <label>Contraseña</label>
+                <input ng-model="user.password" type="text">
+              </md-input-container>
+          </div>
+      </md-list>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="hide()">
+        Aceptar
+      </md-button>
+      <md-button ng-click="cancel()" md-autofocus>
+        Cancelar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+
+
+

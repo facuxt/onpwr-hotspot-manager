@@ -1,56 +1,75 @@
-<div class="col-xs-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                Listado de usuarios hotspot. 
-            </h3>
-        </div>
-			<table class="table"> 
-				<thead> 
-					<tr> 
-						<th>
-							#
-						</th>
-						<th>
-							Usuario
-						</th> 
-						<th>
-							Contraseña
-						</th>
-						<th>
-							Datos descargados
-						</th>
-						<th>
-							Activo?
-						</th> 
-					</tr> 
-				</thead> 
-				<tbody> 
-					<tr ng-repeat="user in modelo.users" ng-if="user.name != 'default-trial' "> 
-						<th scope="row">
-							{{user['.id']}}
-						</th> 
-						<td>
-							{{user.name}}
-						</td> 
-						<td>
-							{{user.password}}
-						</td> 
-						<td>
-							{{modelo.floor(user['bytes-in']/1024/1024)}}MB
-						</td> 
-						<td>
-							<button class="btn btn-success" ng-show="user.disabled=='false'" ng-click="modelo.stateUser(user)">
-								Habilitado
-								<md-tooltip>Deshabilitar</md-tooltip>
-							</button>
-							<button class="btn btn-danger" ng-show="user.disabled=='true'" ng-click="modelo.stateUser(user)">
-								Deshabilitado
-								<md-tooltip>Habilitar</md-tooltip>
-							</button>
-						</td> 
-					</tr>  
-				</tbody> 
-			</table> 
-    </div>
-</div>
+<md-toolbar md-colors="{background: 'blue-grey'}">
+	<div class="md-toolbar-tools">
+		<h2>Listado de usuarios hotspot</h2>
+		<div flex></div>
+		<button class="btn btn-default" ng-click="modelo.inicial()">
+			<i class="glyphicon glyphicon-refresh"></i> 
+			Refrescar tabla
+		</button>
+	</div>
+</md-toolbar>
+
+<md-content flex layout-padding style="background: white;">
+	<table class="table"> 
+		<thead> 
+			<tr> 
+				<th>
+					#
+				</th>
+				<th>
+					Usuario
+				</th> 
+				<th>
+					Contraseña
+				</th>
+				<th>
+					Datos descargados
+				</th>
+				<th>
+					Dispositivos
+				</th>
+				<th>
+					Activo?
+				</th> 
+			</tr> 
+		</thead> 
+		<tbody> 
+			<tr ng-repeat="user in modelo.users" ng-if="user.name != 'default-trial' "> 
+				<th scope="row">
+					{{user['.id']}}
+				</th> 
+				<td>
+					{{user.name}}
+				</td> 
+				<td>
+					{{user.password}}
+				</td> 
+				<td>
+					{{modelo.floor(user['bytes-in']/1024/1024)}}MB
+				</td> 
+				<td>
+					{{modelo.active[user.name].length?modelo.active[user.name].length:0}}
+					<md-tooltip>Dispositivos activos actualmente</md-tooltip>
+				</td> 
+				<td>
+					<button class="btn btn-primary" ng-click="modelo.viewConnected(user.name)">
+						<i class="glyphicon glyphicon-zoom-out"></i>
+						<md-tooltip>Ver dispositivos conectados</md-tooltip>
+					</button>
+					<button class="btn btn-primary" ng-click="modelo.editUser(user)">
+						<i class="glyphicon glyphicon-pencil"></i>
+						<md-tooltip>Editar usuario</md-tooltip>
+					</button>
+					<button class="btn btn-success" ng-show="user.disabled=='false'" ng-click="modelo.stateUser(user)">
+						Habilitado
+						<md-tooltip>Deshabilitar</md-tooltip>
+					</button>
+					<button class="btn btn-danger" ng-show="user.disabled=='true'" ng-click="modelo.stateUser(user)">
+						Deshabilitado
+						<md-tooltip>Habilitar</md-tooltip>
+					</button>
+				</td> 
+			</tr>  
+		</tbody> 
+	</table> 
+</md-content>
