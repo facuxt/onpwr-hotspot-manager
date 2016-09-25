@@ -1,6 +1,7 @@
 #Admin. mikrotik hotspot users.
 
- -soft para habilitar o deshabilitar usuarios hotspot ya creados en routers mikrotik.
+ - soft para habilitar o deshabilitar usuarios hotspot ya creados en routers mikrotik.
+ - Realizado en NodeJS 4.5 + AngularJS 1.5.8 + ngMaterial
 
 ##Como instalar
 - Instalar Node.js 4.x.x
