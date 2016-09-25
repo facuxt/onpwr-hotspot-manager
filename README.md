@@ -3,11 +3,15 @@
  -soft para habilitar o deshabilitar usuarios hotspot ya creados en routers mikrotik.
 
 ##Como instalar
--Instalar Node.js 4.x.x
--Instalar dependencias con "npm install".
--Editar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
--instalar nodemon con "npm install -g nodemon"
--iniciar con "nodemon server.js"
+- Instalar Node.js 4.x.x
+
+- Instalar dependencias con "npm install".
+
+- Editar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
+
+- instalar nodemon con "npm install -g nodemon"
+
+- iniciar con "nodemon server.js"
 
 Compatible con todos los sistemas operativos
 
