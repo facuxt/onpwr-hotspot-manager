@@ -1,21 +1,23 @@
-# Admin. mikrotik hotspot users.
+#Admin. mikrotik hotspot users.
 
  -soft para habilitar o deshabilitar usuarios hotspot ya creados en routers mikrotik.
 
-## Como instalar
+##Como instalar
+-Instalar Node.js 4.x.x
+-Instalar dependencias con "npm install".
+-Editar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
+-instalar nodemon con "npm install -g nodemon"
+-iniciar con "nodemon server.js"
 
--Instalar dependencias con npm install.
--Configurar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
--instalar nodemon npm install -g nodemon
--iniciar con nodemon server.js
+Compatible con todos los sistemas operativos
 
-## Características
+##Características
 
 - Habilitar o deshabilitar a usuarios hotspot ya creados en mikrotik.
 - Ver cantidad de dispositivos conectados por cada usuario.
 
 
-## Faltantes (TO-DO):
+##Faltantes (TO-DO):
 - Editar maximas conexiones de hotspot.
 - Desloguear usuarios activos para el user al deshabilitarlo.
 - Otros?.
