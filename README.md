@@ -6,7 +6,16 @@
 ##Como instalar
 - Instalar Node.js 4.x.x
 
-- Instalar dependencias con "npm install".
+- Instalar dependencias con los siguientes comandos:
+
+```cd node_modules
+cd mikronode
+npm install
+cd ..
+cd ..
+npm install
+npm start```
+
 
 - Editar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
 
