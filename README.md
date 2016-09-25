@@ -12,20 +12,22 @@
 
 - Instalar dependencias con los siguientes comandos:
 
-```cd node_modules
+```
+cd node_modules
 cd mikronode
 npm install
 cd ..
 cd ..
 npm install
-npm start```
+```
 
 
 - Editar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
 
-- instalar nodemon con "npm install -g nodemon"
-
-- iniciar con "nodemon server.js"
+Iniciar la aplicación con 
+```
+npm start
+```
 
 Compatible con todos los sistemas operativos
 
