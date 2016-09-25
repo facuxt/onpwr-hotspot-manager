@@ -2,9 +2,11 @@
 
  - soft para habilitar o deshabilitar usuarios hotspot ya creados en routers mikrotik.
  - Realizado en NodeJS 4.5 + AngularJS 1.5.8 + ngMaterial
+ 
 ##REQUISITOS
 - NodeJs 4.5
 - RouterOS 6.x
+
 ##Como instalar
 - Instalar Node.js 4.x.x
 
