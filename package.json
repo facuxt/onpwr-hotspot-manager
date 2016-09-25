@@ -1,17 +1,22 @@
 {
   "name": "onpwr",
-  "version": "0.1.0-Alpha.1",
+  "version": "0.2.0-Beta.1",
   "description": "OnPwr hotspot app",
   "main": "script.js",
   "dependencies": {
     "angular-material": "^1.1.1",
     "body-parser": "~1.0.1",
     "express": "~4.0.0",
-    "jsonwebtoken": "^7.1.9"
+    "jsonwebtoken": "^7.1.9",
+    "debug": "~0.8.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/facuxt/onpwr-hotspot-manager.git"
   },
   "author": "Facundo Caselles",
   "license": "MIT"
