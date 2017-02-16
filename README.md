@@ -35,7 +35,8 @@ Compatible con todos los sistemas operativos
 
 - Habilitar o deshabilitar a usuarios hotspot ya creados en mikrotik.
 - Ver cantidad de dispositivos conectados por cada usuario.
-
+- Cambiar contraseña usuario hotspot.
+- Desloguear dispositivos conectados.
 
 ##Faltantes (TO-DO):
 - Editar maximas conexiones de hotspot.
