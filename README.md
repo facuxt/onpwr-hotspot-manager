@@ -22,7 +22,7 @@ npm install
 ```
 
 
-- Editar config.js con parametros del router, y usuario de hotspot que puede administrar el sistema.
+- Editar config.js con parametros del router, interface con AMARRE IP, y usuario de hotspot que puede administrar el sistema.
 
 Iniciar la aplicación con 
 ```
@@ -37,6 +37,8 @@ Compatible con todos los sistemas operativos
 - Ver cantidad de dispositivos conectados por cada usuario.
 - Cambiar contraseña usuario hotspot.
 - Desloguear dispositivos conectados.
+- Habilitar o deshabilitar a clientes mediante amarre ARP.
+- Modificar Queues/Planes de velocidad asignadas a cada CLiente (determina queue mediante nombre para hotspot, y mediante address para ARP).
 
 ##Faltantes (TO-DO):
 - Editar maximas conexiones de hotspot.

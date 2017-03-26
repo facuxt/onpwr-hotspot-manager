@@ -17,6 +17,13 @@
               </md-input-container>
           </div>
       </md-list>
+      <md-list flex>
+        <md-list-item ng-hide="hideSpeed">
+          <div class="md-list-item-text" layout="column">
+              <label>Velocidad actual del cliente (Seleccione nueva velocidad)</label>
+              <select class="form-control " ng-model="currentSpeed" ng-options="item.value as item.name for item in speeds"></select>
+          </div>
+      </md-list>
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <md-button ng-click="hide()">

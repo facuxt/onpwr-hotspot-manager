@@ -15,16 +15,16 @@ app.factory('httpInterceptor', function($q, $injector, $rootScope, $cookies) {
              return response;
         },
       responseError: function(rejection) {
-      	//var stateService = $injector.get('$state');
+      	var stateService = $injector.get('$state');
         //var mdDialog = $injector.get('$mdDialog');
         //var $sessionStorage = $injector.get('$sessionStorage');
         var $state = $injector.get('$state');
 
         if (rejection.status === 401) {
-            //var $http = $injector.get('$http');
+           
 
 
-            //$state.go("404");
+            $state.go("inicio");
             return $q.reject(rejection);
             //END BYPASS
 

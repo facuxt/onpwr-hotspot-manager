@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-<title>ONPWR - Administrador hotspot v0.2.1-Beta.1</title>
+<title>ONPWR - Administrador hotspot v0.3.0-Beta.1</title>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/angularjs/angular-material.min.css">
 
@@ -115,35 +115,16 @@
 </style>-->
   <md-toolbar md-colors="{background: 'blue-grey'}">
     <div class="md-toolbar-tools">
-      <h2>ONPWRAPP v0.2.1-Beta.1</h2>
-      <div flex></div>
-      <!-- <button class="btn btn-default" ng-click="modelo.inicial()">Refrescar tabla</button> -->
+      <h2>ONPWRAPP v0.3.0-Beta.1</h2>
+      <div style="width:30px;"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" ui-sref-active="active" ui-sref="listUsers">Clientes Hotspot</button>
+        <button class="btn btn-primary" ui-sref-active="active" ui-sref="listClients">Clientes Fijos</button>
+      </div>
     </div>
   </md-toolbar>
   <md-content layout-padding>
   	<div class="container">
-  		<!-- <nav class="navbar navbar-default">
-  		  <div class="container-fluid">
-  		  
-  		    <div class="navbar-header">
-  		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-  		        <span class="sr-only">Toggle navigation</span>
-  		        <span class="icon-bar"></span>
-  		        <span class="icon-bar"></span>
-  		        <span class="icon-bar"></span>
-  		      </button>
-  		      <a class="navbar-brand" href="#">ONPWR</a>
-  		    </div>
-
-  		    
-  		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-  		      <ul class="nav navbar-nav">
-  		        <li><a ui-sref="listUsers">Usuarios hotspot</a></li>
-  
-  		      </ul>
-  		    </div>
-  		  </div>
-  		</nav> -->
       <div ui-view flex></div>
   		</div>
   	</div>
@@ -155,7 +136,9 @@
 <script type="text/javascript" src="assets/uirouter/ui-router.min.js"></script>
 
 <script type="text/javascript" src="scripts/app.js"></script>
+
 <script type="text/javascript" src="scripts/controllers/ListUsersController.js"></script>
+<script type="text/javascript" src="scripts/controllers/ListClientsController.js"></script>
 <script type="text/javascript" src="scripts/controllers/IndexController.js"></script>
 
 

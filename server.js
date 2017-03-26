@@ -15,6 +15,8 @@ var MikroNode   = require('mikronode');
 //setear globales
 app.set('secret', config.secret);
 app.set('adminUsr', config.adminUsr);
+app.set('arpInterface', config.arpInterface);
+
 //Crear conexión reutilizable para mikrotik.
 var createConnection = function(){
 	var connection = MikroNode.getConnection(config.router_ip, config.router_user, config.router_password, { //configurar estos parámetros: "ip router, user, password"
@@ -83,7 +85,7 @@ apiRoutes.use(function(req, res, next) {
 		// verifies secret and checks exp
 		jwt.verify(token, app.get('secret'), function(err, decoded) {			
 			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+				return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });		
 			} else {
 				// if everything is good, save to request for use in other routes
 				req.decoded = decoded;	
@@ -114,6 +116,7 @@ apiRoutes.get('/users', function(req, res) {
 		});
 	});
 });
+
 
 apiRoutes.get('/active', function(req, res) {
 	var connPromise = createConnection().getConnectPromise().then(function(conn) {
@@ -166,6 +169,98 @@ apiRoutes.get('/user/disable/:userId', function(req, res) {
 		var chan1Promise = conn.getCommandPromise('/ip/hotspot/user/set', ['=.id='+req.params.userId, '=disabled=yes'])
 		Promise.all([ chan1Promise ]).then(function resolved(values) {
 			res.json({success:true});   
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+apiRoutes.get('/clients', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/arp/print');
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			var users = [];
+			for(var i in values[0]){
+				var val = values[0][i];
+				if(val.interface == app.get('arpInterface')){
+					users.push(val);
+				}
+			}
+			res.json(users);			
+		}, function rejected(reason) {
+			console.log('Oops: ' + reason);
+		});
+	});
+});
+
+apiRoutes.get('/client/enable/:userId', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/arp/set', ['=.id='+req.params.userId, '=disabled=no'])
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			res.json({success:true});  
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+
+apiRoutes.get('/client/disable/:userId', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/ip/arp/set', ['=.id='+req.params.userId, '=disabled=yes'])
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			res.json({success:true});   
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+
+apiRoutes.get('/getQueueByAddress/:address', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/queue/simple/print')
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			var queue = false;
+			for(var i in values[0]){
+				var val = values[0][i];
+				if(val.target.split('/')[0] == req.params.address){
+					queue = val
+				}
+			}
+			if(queue){
+				res.json({success:true, response: queue});   
+			}else{
+				res.json({success:false, message: 'no se encontró un plan de velocidad para el cliente seleccionado'});
+			}
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+apiRoutes.get('/getQueueByName/:name', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/queue/simple/print')
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			var queue = false;
+			for(var i in values[0]){
+				var val = values[0][i];
+				if(val.name == req.params.name){
+					queue = values[0][i];
+				}
+			}
+			if(queue){
+				res.json({success:true, response: queue});   
+			}else{
+				res.json({success:false, message: 'no se encontró un plan de velocidad para el cliente seleccionado'});
+			}
+		}, function rejected(reason) {
+			res.json({success:false, message: reason});   
+		});
+	});
+});
+apiRoutes.post('/changeQueue/:queueId', function(req, res) {
+	var connPromise = createConnection().getConnectPromise().then(function(conn) {
+		var chan1Promise = conn.getCommandPromise('/queue/simple/set', ['=.id='+req.params.queueId, '=max-limit='+req.body.maxLimit])
+		Promise.all([ chan1Promise ]).then(function resolved(values) {
+			res.json({success:true});  
 		}, function rejected(reason) {
 			res.json({success:false, message: reason});   
 		});

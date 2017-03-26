@@ -104,24 +104,74 @@ app.controller("ListUsersController",["$mdToast", "$http", '$scope','$mdDialog',
 				m: m
 			}
 	    })
-		function DialogController($scope, $mdDialog, $http, $mdToast, user, m) {
+		function DialogController($scope, $mdDialog, $http, $mdToast, user, m, DataService) {
 			$scope.user = user;
+			$scope.speeds = DataService.speeds;
+			$scope.currentSpeed = {}
+
+			$http({
+		    	url: '/api/getQueueByName/'+user.name,
+		    	method: 'get'
+		    }).success(function(data){
+		    	if(data.success){
+		    		$scope.currentSpeed = data.response['max-limit'];
+		    		$scope.queueId = data.response['.id'];
+		    	}else{
+		    		$scope.hideSpeed = true;
+		    	}
+		    })
 
 			$scope.floor= function(qty){
 				return Math.floor(qty);
 			}
 			$scope.hide = function() {
-		      $http({
-			      url: '/api/userPassword/'+user['.id'],
+				var found = false;
+				for(var i in $scope.speeds){
+					value = $scope.speeds[i].value
+					if(value == $scope.currentSpeed){
+						found=true;
+					}
+				}
+				if(!found){
+					$mdToast.show(
+							$mdToast.simple()
+							  .textContent('Seleccione una velocidad para continuar')
+							  .hideDelay(3000)
+					);
+					return;
+				}
+				$http({
+				  url: '/api/userPassword/'+user['.id'],
+				  method: "post",
+				  data: {
+				  	newpass: user.password,
+				  }
+				}).success(function(data){
+				    if(data.success){
+						$scope.changeQueue();
+						m.inicial();
+				    }else{
+				      $mdToast.show(
+				        $mdToast.simple()
+				          .textContent('Error '+data.message)
+				          .hideDelay(3000)
+				      );
+				    }
+				})
+		      
+		    };
+		    $scope.changeQueue = function() {
+		    	$http({
+			      url: '/api/changeQueue/'+$scope.queueId,
 			      method: "post",
 			      data: {
-			      	newpass: user.password,
+			      	maxLimit: $scope.currentSpeed,
 			      }
 			    }).success(function(data){
 			        if(data.success){
 						$mdToast.show(
 							$mdToast.simple()
-							  .textContent('Contraseña cambiada correctamente en el router para el usuario '+user.name)
+							  .textContent('Cambios guardados correctamente')
 							  .hideDelay(3000)
 						);
 						$mdDialog.hide();

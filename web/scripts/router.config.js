@@ -17,4 +17,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: "ListUsersController",
       controllerAs: "modelo"
     })
+    .state('listClients', {
+      url: "/listClients",
+      templateUrl: "vistas/list-clients.html",
+      controller: "ListClientsController",
+      controllerAs: "m"
+    })
 });
