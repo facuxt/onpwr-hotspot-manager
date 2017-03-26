@@ -1,0 +1,64 @@
+<md-toolbar md-colors="{background: 'blue-grey'}">
+	<div class="md-toolbar-tools">
+		<h2>Listado de clientes fijos (con router en domicilio)</h2>
+		<div flex></div>
+		<button class="btn btn-default" ng-click="modelo.inicial()">
+			<i class="glyphicon glyphicon-refresh"></i> 
+			Refrescar tabla
+		</button>
+	</div>
+</md-toolbar>
+
+<md-content flex layout-padding style="background: white;">
+	<table class="table"> 
+		<thead> 
+			<tr> 
+				<th>
+					#
+				</th>
+				<th>
+					Cliente
+				</th> 
+				<th>
+					Dirección IP
+				</th>
+				<th>
+					Dirección MAC
+				</th>
+				<th>
+					Activo?
+				</th> 
+			</tr> 
+		</thead> 
+		<tbody> 
+			<tr ng-repeat="user in m.users" ng-if="user.name != 'default-trial' "> 
+				<th scope="row">
+					{{user['.id']}}
+				</th> 
+				<td>
+					{{user.comment}}
+				</td> 
+				<td>
+					{{user.address}}
+				</td> 
+				<td>
+					{{user['mac-address']}}
+				</td> 
+				<td>
+					<button class="btn btn-primary" ng-click="m.editUser(user)">
+						<i class="glyphicon glyphicon-pencil"></i>
+						<md-tooltip>Editar cliente</md-tooltip>
+					</button>
+					<button class="btn btn-success" ng-show="user.disabled=='false'" ng-click="m.stateUser(user)">
+						Habilitado
+						<md-tooltip>Deshabilitar</md-tooltip>
+					</button>
+					<button class="btn btn-danger" ng-show="user.disabled=='true'" ng-click="m.stateUser(user)">
+						Deshabilitado
+						<md-tooltip>Habilitar</md-tooltip>
+					</button>
+				</td> 
+			</tr>  
+		</tbody> 
+	</table> 
+</md-content>
