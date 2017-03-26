@@ -181,7 +181,7 @@ apiRoutes.get('/clients', function(req, res) {
 			var users = [];
 			for(var i in values[0]){
 				var val = values[0][i];
-				if(val.interface == app.get('arpInterface')){
+				if(val.interface == app.get('arpInterface') && val.comment.indexOf(".hidden")==-1){
 					users.push(val);
 				}
 			}
