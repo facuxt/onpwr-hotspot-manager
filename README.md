@@ -1,4 +1,4 @@
-#Admin. mikrotik hotspot users.
+# Admin. mikrotik hotspot users.
 
  - soft para habilitar o deshabilitar usuarios hotspot ya creados en routers mikrotik.
  - Realizado en NodeJS 4.5 + AngularJS 1.5.8 + ngMaterial
@@ -7,11 +7,11 @@
 ![onpwr3-2](https://cloud.githubusercontent.com/assets/7550822/24327697/62ec099a-11ae-11e7-8202-cbe6335b0d8a.png)
 ![onpwr3-1](https://cloud.githubusercontent.com/assets/7550822/24327698/62fabc2e-11ae-11e7-881b-59a90144301e.png)
 
-##REQUISITOS
+## REQUISITOS
 - NodeJs 4.5
 - RouterOS 6.x
 
-##Como instalar
+## Como instalar
 - Instalar Node.js 4.x.x
 
 - Instalar dependencias con los siguientes comandos:
@@ -35,7 +35,7 @@ npm start
 
 Compatible con todos los sistemas operativos
 
-##Características
+## Características
 
 - Habilitar o deshabilitar a usuarios hotspot ya creados en mikrotik.
 - Ver cantidad de dispositivos conectados por cada usuario.
@@ -44,7 +44,7 @@ Compatible con todos los sistemas operativos
 - Habilitar o deshabilitar a clientes mediante amarre ARP.
 - Modificar Queues/Planes de velocidad asignadas a cada CLiente (determina queue mediante nombre para hotspot, y mediante address para ARP).
 
-##Faltantes (TO-DO):
+## Faltantes (TO-DO):
 - Editar maximas conexiones de hotspot.
 - Desloguear usuarios activos para el user al deshabilitarlo.
 - Otros?.
